@@ -55,6 +55,7 @@ async function createWindow() {
   })
   // 取消菜单栏
   win.removeMenu()
+  
   if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
     win.loadURL(url)
     // Open devTool if the app is not packaged

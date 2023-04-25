@@ -1,61 +1,46 @@
 <template>
-    <el-container>
-        <el-aside width="200px">
-            <el-menu default-active="0" class="el-menu-vertical-demo" @select="selectHandle" :router="true">
-                <el-menu-item index="0">
-                    <el-icon>
-                        <Operation />
-                    </el-icon>
-                    <span>首页</span>
-                </el-menu-item>
+    <el-menu default-active="/" class="el-menu-vertical-demo" @select="selectHandle" :router="true" span="12">
+        <el-menu-item index="/">
+            <el-icon>
+                <Operation />
+            </el-icon>
+            <span>首页</span>
+        </el-menu-item>
 
-                <el-menu-item index="1">
-                    <el-icon>
-                        <Document />
-                    </el-icon>
-                    <span>面向对象CK度量</span>
-                </el-menu-item>
+        <el-menu-item index="/uploadCK">
+            <el-icon>
+                <reading />
+            </el-icon>
+            <span>面向对象CK度量</span>
+        </el-menu-item>
 
-                <el-menu-item index="2">
-                    <el-icon><icon-menu /></el-icon>
-                    <span>面向对象LK度量</span>
-                </el-menu-item>
+        <el-menu-item index="/uploadLK">
+            <el-icon><icon-menu /></el-icon>
+            <span>面向对象LK度量</span>
+        </el-menu-item>
 
-                <el-menu-item index="3">
-                    <el-icon>
-                        <document />
-                    </el-icon>
-                    <span>用例点度量</span>
-                </el-menu-item>
+        <el-menu-item index="/uploadUsercase">
+            <el-icon>
+                <document />
+            </el-icon>
+            <span>用例点度量</span>
+        </el-menu-item>
 
-                <el-menu-item index="4">
-                    <el-icon>
-                        <setting />
-                    </el-icon>
-                    <span>功能点度量</span>
-                </el-menu-item>
+        <el-menu-item index="/uploadFunctionPoint">
+            <el-icon>
+                <setting />
+            </el-icon>
+            <span>功能点度量</span>
+        </el-menu-item>
 
-            </el-menu>
-        </el-aside>
-        <el-main>
-            <el-card class="box-card">
-                <h1>
-                    欢迎使用软件度量软件！
-                </h1>
-                <h1>
-                    请在左侧选择度量方式！
-                </h1>
-            </el-card>
-
-        </el-main>
-    </el-container>
+    </el-menu>
 </template>
 
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import {
     Document,
+    Reading,
     Menu as IconMenu,
     Setting,
     Operation
@@ -88,4 +73,10 @@ const selectHandle = (key: string) => {
     border-radius: 4px;
     min-height: 36px;
 }
+.el-menu {
+  height: 97vh;
+}
 </style>
+
+
+

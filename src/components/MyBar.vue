@@ -7,6 +7,13 @@
             <span>首页</span>
         </el-menu-item>
 
+        <el-menu-item index="/uploadLK">
+            <el-icon>
+                <icon-menu />
+            </el-icon>
+            <span>面向对象LK度量</span>
+        </el-menu-item>
+
         <el-menu-item index="/uploadCK">
             <el-icon>
                 <reading />
@@ -14,23 +21,18 @@
             <span>面向对象CK度量</span>
         </el-menu-item>
 
-        <el-menu-item index="/uploadLK">
-            <el-icon><icon-menu /></el-icon>
-            <span>面向对象LK度量</span>
-        </el-menu-item>
-
-        <el-menu-item index="/uploadUsercase">
+        <el-menu-item index="/uploadUsercase/upload">
             <el-icon>
                 <document />
             </el-icon>
             <span>用例点度量</span>
         </el-menu-item>
 
-        <el-menu-item index="/uploadFunctionPoint">
+        <el-menu-item index="/messageFlow">
             <el-icon>
                 <setting />
             </el-icon>
-            <span>功能点度量</span>
+            <span>信息流度量</span>
         </el-menu-item>
 
     </el-menu>
@@ -73,8 +75,9 @@ const selectHandle = (key: string) => {
     border-radius: 4px;
     min-height: 36px;
 }
+
 .el-menu {
-  height: 97vh;
+    height: 97vh;
 }
 </style>
 

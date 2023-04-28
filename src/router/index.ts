@@ -3,16 +3,38 @@ import UploadFileVue from '../components/UploadFile.vue'
 import Welcome from "../components/Welcome.vue"
 import LKResultVue from '../result/LKResult.vue'
 import CKResultVue from '../result/CKResult.vue'
+import UploadUsercaseVue from '../components/UploadUsercase.vue'
+import UsercaseWeightVue from '../result/UsercaseWeight.vue'
+import MessageFlowResultVue from '../result/MessageFlowResult.vue'
 
 const routes: RouteRecordRaw[] = [
     { path: "/", name: "home", component: Welcome },
     { path: "/welcome", name: "welcome", component: Welcome },
     { path: "/uploadLK", name: "uploadLK", component: UploadFileVue },
     { path: "/uploadCK", name: "uploadCK", component: UploadFileVue },
-    { path: "/uploadUsercase", name: "uploadUsercase", component: UploadFileVue },
-    { path: "/uploadFunctionPoint", name: "uploadFunctionPoint", component: UploadFileVue },
+    {
+        path: "/uploadUsercase",
+        name: "uploadUsercase",
+        children: [
+            {
+                path: 'upload',
+                name: 'usercaseUpload',
+                component: UploadFileVue,
+
+            },
+            {
+                path: 'setWeight',
+                name: 'usercaseSetweight',
+                component: UsercaseWeightVue
+            }
+
+        ],
+        component: UploadUsercaseVue
+    },
+    { path: '/messageFlow', name: 'messageFlow', component: UploadFileVue},
     { path: "/LKResult", name: "LKResult", component: LKResultVue },
-    { path: "/CKResult", name: "CKResult", component: CKResultVue }
+    { path: "/CKResult", name: "CKResult", component: CKResultVue },
+    { path: "/messageFlowResult", name: "messageFlowResult", component: MessageFlowResultVue }
 
 ]
 

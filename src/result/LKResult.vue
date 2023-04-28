@@ -29,7 +29,7 @@
                         <template #header>
                             <div style="display: inline-flex; align-items: center">
                                 <div class="title">
-                                    NOOO
+                                    NOO
                                 </div>
 
                                 <el-tooltip effect="dark" content="number of operations overridden" placement="top">
@@ -41,7 +41,7 @@
                         </template>
                         <el-table :data="tableData" style="width: 100%" :max-height="tableMaxHeight">
                             <el-table-column prop="classname" label="类名" />
-                            <el-table-column prop="nooo" label="度量值" />
+                            <el-table-column prop="noo" label="度量值" />
                         </el-table>
                     </el-card>
                 </el-col>

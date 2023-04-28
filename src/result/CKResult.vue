@@ -161,12 +161,12 @@ import { useCKResultStore } from '../store/store'
 const tableData: CKResult[] = useCKResultStore().getCK()
 
 const window_height = ref('500px') //默认高度
-const tableMaxHeight = ref(200)
+const tableMaxHeight = ref(100)
 window.onresize = function () { //检测window窗口改变大小
     // console.log("窗口变化了！")
     console.log(window.innerHeight) //打印window窗口高度
     window_height.value = (window.innerHeight * 0.9) + 'px'
-    tableMaxHeight.value = window.innerHeight * 0.9 / 3;
+    tableMaxHeight.value = window.innerHeight * 0.9 / 5;
 }
 
 

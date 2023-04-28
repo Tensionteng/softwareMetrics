@@ -1,21 +1,46 @@
-type LKResult = {
+export type LKResult = {
     classname: string,
-    cs: number | string,
-    nooo: number | string,
-    noa: number | string,
-    si: number | string
+    cs: number,
+    noo: number,
+    noa: number,
+    si: number
 }
 
-type CKResult = {
+export type CKResult = {
     classname: string,
-    wmc: number | string,
-    dit: number | string,
-    noc: number | string,
-    cbo: number | string,
-    rfc: number | string,
-    loc: number | string
+    wmc: number,
+    dit: number,
+    noc: number,
+    cbo: number,
+    rfc: number,
+    loc: number
 }
 
-type result = LKResult | CKResult;
+export type weightOfUser = {
+    username: string,
+    weight: number
+}
 
-export type { result, LKResult, CKResult } 
+export type weightOfUsercase = {
+    usercaseName: string,
+    weight: number
+}
+
+export type messageFlowMoudle = {
+    moudleName: string,
+    fan_in: string,
+    fan_out: string,
+    complexity: string
+}
+
+export type messageFlow = {
+    moudleList: messageFlowMoudle[],
+    max_in: number,
+    max_out: number,
+    avg_in: number,
+    avg_out: number,
+    depth: number
+}
+
+export type result = LKResult | CKResult | messageFlow;  
+

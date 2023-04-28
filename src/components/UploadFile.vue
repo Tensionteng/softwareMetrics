@@ -47,6 +47,7 @@ import type { UploadProps, UploadInstance, UploadRawFile } from 'element-plus'
 import { get, post } from '../httpConfig/api';
 import { CKResult, LKResult, messageFlow, usercaseGraph } from '../result/type/type'
 import { useLKResultStore, useCKResultStore, useMessageFlowStore, useUsercaseStore } from '../store/store'
+import { da } from 'element-plus/es/locale'
 
 const route = useRoute()
 const router = useRouter()
@@ -134,18 +135,21 @@ const request = {
             filepath: filepath
         })
         useCKResultStore().changeCK(response.data)
+        router.push('/CKResult')
     },
     "usercaseUpload": async () => {
         const response = await post<usercaseGraph>('usercaseMetrics', {
             filepath: filepath
         })
         useUsercaseStore().changeUsercase(response.data)
+        router.push('/uploadUsercase/setWeight')
     },
     "messageFlow": async () => {
         const response = await post<messageFlow>('messageFlowMetrics', {
             filepath: filepath
         })
         useMessageFlowStore().changeMessageFlow(response.data)
+        router.push('/messageFlowResult')
     }
 }
 
@@ -158,12 +162,7 @@ const submitUpload = async () => {
         })
         return
     }
-
     request[route.name as keyof typeof request]()
-
-    const toResult: string = map.get(route.name as string) as string
-    console.log("点击了上传按钮", toResult);
-    // router.push('/LKResult')
 }
 
 </script>

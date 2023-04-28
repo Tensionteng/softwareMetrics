@@ -30,7 +30,7 @@ let step = ref(0)
 watch(
     () => route.name,
     () => {
-        if (step.value > 3)
+        if (step.value > 2)
             step.value = 0
         else
             step.value++;

@@ -164,25 +164,29 @@ import { Ref, ref } from 'vue';
 import { weightOfUser, weightOfUsercase } from './type/type'
 import { useUsercaseStore } from '../store/store'
 
-const user: weightOfUser[] = ref(useUsercaseStore().getUsercase().users) as Ref<weightOfUser[]> & weightOfUser[]
 
-const usercase: weightOfUsercase[] = ref(useUsercaseStore().getUsercase().usercases) as Ref<weightOfUsercase[]> & weightOfUsercase[]
+console.log(useUsercaseStore().getUsercase().users);
 
-let uaw = ref(user.reduce((total, currentValue) => {
-    return total + (currentValue.weight as number)
-}, 0) as number)
+const user= ref(useUsercaseStore().getUsercase().users)
+const usercase = ref(useUsercaseStore().getUsercase().usercases)
 
-let uucw = ref(usercase.reduce((total, currentValue) => {
-    return total + (currentValue.weight as number)
-}, 0) as number)
+
+
+let uaw = ref(user.value.reduce((total, currentValue) => {
+    return total + currentValue.weight
+}, 0))
+
+let uucw = ref(usercase.value.reduce((total, currentValue) => {
+    return total + currentValue.weight
+}, 0))
 
 let tcf = ref(1)
 let ef = ref(1)
 let upc = ref((uaw.value + uucw.value) * tcf.value * ef.value)
 
 const userWeightchange = (index: number, row: weightOfUser) => {
-    user[index] = row
-    let tem: number = user.reduce((total, currentValue) => {
+    user.value[index] = row
+    let tem: number = user.value.reduce((total, currentValue) => {
         return total + (currentValue.weight as number)
     }, 0) as number
     uaw.value = tem
@@ -192,8 +196,8 @@ const userWeightchange = (index: number, row: weightOfUser) => {
 }
 
 const usercaseWeightChange = (index: number, row: weightOfUsercase) => {
-    usercase[index] = row
-    let tem: number = usercase.reduce((total, currentValue) => {
+    usercase.value[index] = row
+    let tem: number = usercase.value.reduce((total, currentValue) => {
         return total + (currentValue.weight as number)
     }, 0) as number
     uucw.value = tem

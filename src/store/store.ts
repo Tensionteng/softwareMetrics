@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { LKResult, CKResult, messageFlow, messageFlowMoudle, usercaseGraph } from '../result/type/type'
+import { LKResult, CKResult, messageFlow, messageFlowModule, usercaseGraph } from '../result/type/type'
 import { ref } from 'vue'
 
 const useLKResultStore = defineStore("LKResult", () => {

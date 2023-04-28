@@ -12,7 +12,7 @@
                             </div>
                         </template>
                         <el-table :data="tableData" style="width: 100%" :max-height="tableMaxHeight">
-                            <el-table-column prop="moudleName" label="模块名" />
+                            <el-table-column prop="moduleName" label="模块名" />
                             <el-table-column prop="fan_in" label="扇入" />
                             <el-table-column prop="fan_out" label="扇出" />
                             <el-table-column prop="complexity" label="复杂度" />
@@ -93,12 +93,12 @@
 </template>
   
 <script lang="ts" setup>
-import { ref, computed, Ref } from 'vue';
-import { messageFlowMoudle, messageFlow } from './type/type'
+import { ref, Ref } from 'vue';
+import { messageFlowModule, messageFlow } from './type/type'
 import { useMessageFlowStore } from '../store/store'
 
-const data: messageFlow = ref(useMessageFlowStore().getMessageMoudle()) as Ref<messageFlow> & messageFlow
-const tableData: messageFlowMoudle[] = data.moudleList
+const data = ref(useMessageFlowStore().getMessageMoudle())
+const tableData = ref(data.value.moduleList)
 
 const window_height = ref('500px') //默认高度
 const tableMaxHeight = ref(100)
@@ -106,7 +106,7 @@ window.onresize = function () { //检测window窗口改变大小
     // console.log("窗口变化了！")
     console.log(window.innerHeight) //打印window窗口高度
     window_height.value = (window.innerHeight * 0.9) + 'px'
-    tableMaxHeight.value = window.innerHeight * 0.9 / 5;
+    tableMaxHeight.value = window.innerHeight * 0.9 / 3;
 }
 
 

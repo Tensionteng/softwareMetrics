@@ -31,15 +31,15 @@ export type usercaseGraph = {
     usercases: weightOfUsercase[]
 }
 
-export type messageFlowMoudle = {
-    moudleName: string,
-    fan_in: string,
-    fan_out: string,
-    complexity: string
+export type messageFlowModule = {
+    moduleName: string,
+    fan_in: number,
+    fan_out: number,
+    complexity: number
 }
 
 export type messageFlow = {
-    moudleList: messageFlowMoudle[],
+    moduleList: messageFlowModule[],
     max_in: number,
     max_out: number,
     avg_in: number,

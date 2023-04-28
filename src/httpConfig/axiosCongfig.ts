@@ -2,9 +2,11 @@ import axios, { InternalAxiosRequestConfig, AxiosInstance, AxiosResponse } from 
 import { ElMessage } from 'element-plus';
 
 const axiosInstance: AxiosInstance = axios.create({
-    baseURL: 'http://localhost:8080/',
-    timeout: 5000,
+    baseURL: 'http://localhost:8081/',
+    timeout: 60000,
 });
+
+axios.defaults.withCredentials = true; //true允许跨域
 
 // 添加请求拦截器
 axiosInstance.interceptors.request.use(

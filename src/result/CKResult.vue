@@ -153,12 +153,12 @@
   
 <script lang="ts" setup>
 import { Warning } from '@element-plus/icons-vue'
-import { ref } from 'vue';
+import { Ref, ref } from 'vue';
 import { CKResult } from './type/type'
 import { useCKResultStore } from '../store/store'
 
 
-const tableData: CKResult[] = useCKResultStore().getCK()
+const tableData: CKResult[] = ref(useCKResultStore().getCK() as Ref<CKResult[]> & CKResult[])
 
 const window_height = ref('500px') //默认高度
 const tableMaxHeight = ref(100)

@@ -160,58 +160,13 @@
 
 <script setup lang="ts">
 import { Warning } from '@element-plus/icons-vue'
-import { ref } from 'vue';
+import { Ref, ref } from 'vue';
 import { weightOfUser, weightOfUsercase } from './type/type'
-import { useLKResultStore } from '../store/store'
+import { useUsercaseStore } from '../store/store'
 
-const user: weightOfUser[] = [
-    {
-        username: 'a',
-        weight: 1
-    },
-    {
-        username: 'a',
-        weight: 1
-    },
-    {
-        username: 'a',
-        weight: 1
-    },
-    {
-        username: 'a',
-        weight: 1
-    },
-    {
-        username: 'a',
-        weight: 1
-    },
-    {
-        username: 'a',
-        weight: 1
-    },
-]
-const usercase: weightOfUsercase[] = [
-    {
-        usercaseName: 'b',
-        weight: 10
-    },
-    {
-        usercaseName: 'b',
-        weight: 10
-    },
-    {
-        usercaseName: 'b',
-        weight: 10
-    },
-    {
-        usercaseName: 'b',
-        weight: 10
-    },
-    {
-        usercaseName: 'b',
-        weight: 10
-    },
-]
+const user: weightOfUser[] = ref(useUsercaseStore().getUsercase().users) as Ref<weightOfUser[]> & weightOfUser[]
+
+const usercase: weightOfUsercase[] = ref(useUsercaseStore().getUsercase().usercases) as Ref<weightOfUsercase[]> & weightOfUsercase[]
 
 let uaw = ref(user.reduce((total, currentValue) => {
     return total + (currentValue.weight as number)

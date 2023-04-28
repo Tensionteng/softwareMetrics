@@ -16,7 +16,7 @@
 </template>
   
 <script setup lang="ts">
-import { DocumentChecked, Edit, Upload } from '@element-plus/icons-vue'
+import { Edit, Upload } from '@element-plus/icons-vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ref, watch } from 'vue'
 

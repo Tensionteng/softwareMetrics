@@ -93,27 +93,12 @@
 </template>
   
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
+import { ref, computed, Ref } from 'vue';
 import { messageFlowMoudle, messageFlow } from './type/type'
-import { useCKResultStore } from '../store/store'
-import {
-    Iphone,
-    Location,
-    OfficeBuilding,
-    Tickets,
-    User,
-} from '@element-plus/icons-vue'
+import { useMessageFlowStore } from '../store/store'
 
-
-
-const tableData: messageFlowMoudle[] = []
-const data: Partial<messageFlow> = {
-    avg_in: 1,
-    avg_out: 2,
-    max_in: 3,
-    max_out: 4,
-    depth: 5
-}
+const data: messageFlow = ref(useMessageFlowStore().getMessageMoudle()) as Ref<messageFlow> & messageFlow
+const tableData: messageFlowMoudle[] = data.moudleList
 
 const window_height = ref('500px') //默认高度
 const tableMaxHeight = ref(100)

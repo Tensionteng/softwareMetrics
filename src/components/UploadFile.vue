@@ -45,8 +45,8 @@ import { ref, watch } from 'vue'
 import { genFileId } from 'element-plus'
 import type { UploadProps, UploadInstance, UploadRawFile } from 'element-plus'
 import { get, post } from '../httpConfig/api';
-import { result, CKResult, LKResult } from '../result/type/type'
-import { useLKResultStore, useCKResultStore } from '../store/store'
+import { CKResult, LKResult, messageFlow, usercaseGraph } from '../result/type/type'
+import { useLKResultStore, useCKResultStore, useMessageFlowStore, useUsercaseStore } from '../store/store'
 
 const route = useRoute()
 const router = useRouter()
@@ -120,6 +120,35 @@ const handleExceed: UploadProps['onExceed'] = (files) => {
 
 }
 
+
+const request = {
+    "uploadLK": async () => {
+        const response = await post<LKResult[]>('LKMetrics', {
+            filepath: filepath
+        })
+        useLKResultStore().changeLK(response.data)
+        router.push('/LKResult')
+    },
+    "uploadCK": async () => {
+        const response = await post<CKResult[]>('CKMetrics', {
+            filepath: filepath
+        })
+        useCKResultStore().changeCK(response.data)
+    },
+    "usercaseUpload": async () => {
+        const response = await post<usercaseGraph>('usercaseMetrics', {
+            filepath: filepath
+        })
+        useUsercaseStore().changeUsercase(response.data)
+    },
+    "messageFlow": async () => {
+        const response = await post<messageFlow>('messageFlowMetrics', {
+            filepath: filepath
+        })
+        useMessageFlowStore().changeMessageFlow(response.data)
+    }
+}
+
 // 点击上传
 const submitUpload = async () => {
     if (routePath == "") {
@@ -129,115 +158,11 @@ const submitUpload = async () => {
         })
         return
     }
-    const data: Partial<result>[] = [
-        {
-            classname: "1",
-            cs: 1,
-            noo: 2,
-            noa: 3,
-            si: 4,
-            wmc: 5,
-            dit: 6,
-            noc: 7,
-            cbo: 8,
-            rfc: 9,
-            loc: 10
-        },
-        {
-            classname: "1",
-            cs: 1,
-            noo: 2,
-            noa: 3,
-            si: 4,
-            wmc: 5,
-            dit: 6,
-            noc: 7,
-            cbo: 8,
-            rfc: 9,
-            loc: 10
-        },
-        {
-            classname: "1",
-            cs: 1,
-            noo: 2,
-            noa: 3,
-            si: 4,
-            wmc: 5,
-            dit: 6,
-            noc: 7,
-            cbo: 8,
-            rfc: 9,
-            loc: 10
-        },
-        {
-            classname: "1",
-            cs: 1,
-            noo: 2,
-            noa: 3,
-            si: 4,
-            wmc: 5,
-            dit: 6,
-            noc: 7,
-            cbo: 8,
-            rfc: 9,
-            loc: 10
-        },
-        {
-            classname: "1",
-            cs: 1,
-            noo: 2,
-            noa: 3,
-            si: 4,
-            wmc: 5,
-            dit: 6,
-            noc: 7,
-            cbo: 8,
-            rfc: 9,
-            loc: 10
-        },
-        {
-            classname: "1",
-            cs: 1,
-            noo: 2,
-            noa: 3,
-            si: 4,
-            wmc: 5,
-            dit: 6,
-            noc: 7,
-            cbo: 8,
-            rfc: 9,
-            loc: 10
-        },
-        {
-            classname: "1",
-            cs: 1,
-            noo: 2,
-            noa: 3,
-            si: 4,
-            wmc: 5,
-            dit: 6,
-            noc: 7,
-            cbo: 8,
-            rfc: 9,
-            loc: 10
-        }
-    ]
-    // axios
-    // const response = await post(routePath, {
-    //     filepath: filepath
-    // });
 
-    // console.log(response);
-    useLKResultStore().changeLK(data as LKResult[])
-    useCKResultStore().changeCK(data as CKResult[])
+    request[route.name as keyof typeof request]()
 
     const toResult: string = map.get(route.name as string) as string
-    console.log("点击了上传按钮",toResult);
-
-    router.push({
-        path: toResult,
-    })
-
+    console.log("点击了上传按钮", toResult);
     // router.push('/LKResult')
 }
 

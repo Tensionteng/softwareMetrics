@@ -26,6 +26,11 @@ export type weightOfUsercase = {
     weight: number
 }
 
+export type usercaseGraph = {
+    users: weightOfUser[],
+    usercases: weightOfUsercase[]
+}
+
 export type messageFlowMoudle = {
     moudleName: string,
     fan_in: string,
@@ -42,5 +47,5 @@ export type messageFlow = {
     depth: number
 }
 
-export type result = LKResult | CKResult | messageFlow;  
+export type result = LKResult[] | CKResult[] | messageFlow | usercaseGraph;
 

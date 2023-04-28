@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { LKResult, CKResult } from '../result/type/type'
+import { LKResult, CKResult, messageFlow, messageFlowMoudle, usercaseGraph } from '../result/type/type'
 import { ref } from 'vue'
 
 const useLKResultStore = defineStore("LKResult", () => {
@@ -20,4 +20,26 @@ const useCKResultStore = defineStore("CKResult", () => {
     return { changeCK, getCK }
 })
 
-export { useLKResultStore, useCKResultStore }
+const useUsercaseStore = defineStore('usercase', () => {
+    let data: usercaseGraph = ref([]) as unknown as usercaseGraph
+    function changeUsercase(params: usercaseGraph) {
+        data = params
+    }
+    function getUsercase() { return data }
+
+    return { changeUsercase, getUsercase }
+})
+
+const useMessageFlowStore = defineStore('messageFlow', () => {
+    let data: messageFlow = ref([]) as unknown as messageFlow
+
+    function changeMessageFlow(params: messageFlow) {
+        data = params
+    }
+    function getMessageMoudle() { return data }
+    return { changeMessageFlow, getMessageMoudle }
+})
+
+
+
+export { useLKResultStore, useCKResultStore, useMessageFlowStore, useUsercaseStore }
